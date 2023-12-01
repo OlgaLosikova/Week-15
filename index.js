@@ -2,20 +2,21 @@ const cities = ["Москва", "Лондон", "Берлин", "Стамбул"
 const temperature = [];
 const cityTemp = document.querySelectorAll("p");
 const maxMinTemp = document.querySelectorAll("strong");
-// console.log(cityTemp);
-// console.log(maxMinTemp);
 
 for (let i = 0; i < cities.length; i++) {
-  let temp = prompt("Введите температуру", 0);
+  let temp = prompt(`Введите температуру для города ${cities[i]}`, 0);
+  if (isNaN(temp)) {
+    temp = 0;
+  }
   temperature.push(Number(temp));
-  //console.log(temp);
   cityTemp[i].textContent += `${Number(temp)} \u00B0C`;
-  //console.log(cityTemp[i]);
+  console.log(cityTemp[i]);
 }
 const min = Math.min(...temperature);
-// console.log(min);
 const max = Math.max(...temperature);
-// console.log(max);
 
-maxMinTemp[0].textContent += `${max} \u00B0C`;
-maxMinTemp[1].textContent += `${min} \u00B0C`;
+for (let i = 0; i < maxMinTemp.length; i++) {
+  if (maxMinTemp[i].textContent.indexOf("Максимальная")) {
+    maxMinTemp[i].textContent += `${max} \u00B0C`;
+  } else maxMinTemp[i].textContent += `${min} \u00B0C`;
+}
